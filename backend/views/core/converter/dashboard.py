@@ -34,6 +34,9 @@ def converter_dashboard(request: HttpRequest):
         amount_from = request.POST.get('amount_from')
         currency_to = request.POST.get('currency_to')
 
+        if currency_from not in currencies or currency_to not in currencies:
+            return render(request, "pages/converter/dashboard/dashboard.html", context, status=400)
+
         amount_to = round(float(amount_from) / float(currencies[currency_from]) * float(currencies[currency_to]), 2)
         context['amount_to'] = amount_to
         context['currency_from'] = currency_from
@@ -41,4 +44,4 @@ def converter_dashboard(request: HttpRequest):
         context['amount_from'] = amount_from
 
     context['currencies'] = currencies
-    return render(request, "pages/converter/dashboard/dashboard.html", context)
+    return render(request, "pages/converter/dashboard/dashboard.html", context, status=200)
