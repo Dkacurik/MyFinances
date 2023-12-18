@@ -17,8 +17,9 @@ env = environ.Env()
 environ.Env.read_env()
 DEBUG = True if os.environ.get("DEBUG") in ["True", "true", "TRUE", True] else False
 
+
 try:
-    if DEBUG:
+    if True:
         print("[BACKEND] Using local settings", flush=True)
         from .local_settings import *
     else:

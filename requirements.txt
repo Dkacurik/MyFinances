@@ -4,6 +4,7 @@ gunicorn==21.2.0
 # db
 mysqlclient==2.2.0
 mariadb==1.1.8
+mysql
 # django apps
 social-auth-app-django==5.4.0
 django-sendgrid-v5==1.2.3
@@ -32,3 +33,6 @@ forex_python==1.8
 # test
 model_bakery==1.17.0
 tblib # this is used to see parallel test errors
+
+xmltodict~=0.13.0
+requests~=2.31.0

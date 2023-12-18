@@ -58,6 +58,14 @@
       ],
       "url": "",
       "icon": "money-bill"
+    },
+    {
+      "name": "Converter",
+      "urls": [
+        "converter dashboard"
+      ],
+      "url": "converter dashboard",
+      "icon": "money-bill"
     }
   ]
 }

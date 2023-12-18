@@ -4,3 +4,4 @@ from .settings import view, teams
 from .invoices import dashboard, create, view, manage_access
 from .clients import dashboard, create
 from .receipts import dashboard
+from .converter import dashboard

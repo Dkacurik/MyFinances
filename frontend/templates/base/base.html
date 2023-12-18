@@ -62,6 +62,14 @@
                             </a>
                             {% endwith %}
                         </li>
+                                            <li>
+                            {% with i_url="converter dashboard" %}
+                            <a href="{% url i_url %}"
+                               {% if request.resolver_match.url_name == i_url %}class="active"{% endif %}>
+                                Converter
+                            </a>
+                            {% endwith %}
+                        </li>
                     </ul>
                 </div>
             </div>

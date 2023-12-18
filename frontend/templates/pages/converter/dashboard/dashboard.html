@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <div class="flex justify-center items-start h-screen">
+        <div class="p-8 rounded-lg shadow-md w-80">
+            <h2 class="text-2xl font-bold mb-4">Currency Converter</h2>
+
+            <form id="currencyConverterForm" class="space-y-4" method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="fromCurrency" class="block mb-1">From</label>
+                    <select id="fromCurrency"
+                            class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                            name="currency_from">
+                        {% for currency_code, currency_data in currencies.items %}
+                            {% if currency_code == currency_from %}
+                                <option value="{{ currency_code }}" selected>{{ currency_code }}</option>
+                            {% else %}
+                                <option value="{{ currency_code }}">{{ currency_code }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <input id="fromAmount" type="text" placeholder="Enter amount" name="amount_from"
+                           value={{ amount_from }}
+                                   class="w-full mt-2 border border-gray-300 rounded-md py-2 px-3 focus:outline-none
+                           focus:border-blue-500">
+                </div>
+
+                <div>
+                    <label for="toCurrency" class="block mb-1">To</label>
+                    <select id="toCurrency"
+                            class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                            name="currency_to">
+                        {% for currency_code, currency_data in currencies.items %}
+                            {% if currency_code == currency_to %}
+                                <option value="{{ currency_code }}" selected>{{ currency_code }}</option>
+                            {% else %}
+                                <option value="{{ currency_code }}">{{ currency_code }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <input id="toAmount" type="text" placeholder="Converted amount"
+                           class="w-full mt-2 border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                           name="amount_to" value={{ amount_to }}
+                                   readonly>
+                </div>
+
+                <button type="submit"
+                        class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">
+                    Convert
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock content %}
