@@ -1,3 +1,5 @@
+import re
+
 from django.http import HttpRequest
 from django.shortcuts import render
 import requests
@@ -34,7 +36,12 @@ def converter_dashboard(request: HttpRequest):
         amount_from = request.POST.get('amount_from')
         currency_to = request.POST.get('currency_to')
 
-        if currency_from not in currencies or currency_to not in currencies:
+        if not re.match(r'^[0-9]+$', amount_from):
+            context['currencies'] = currencies
+            return render(request, "pages/converter/dashboard/dashboard.html", context, status=400)
+
+        if currency_from not in currencies or currency_to not in currencies or float(amount_from) < 0:
+            context['currencies'] = currencies
             return render(request, "pages/converter/dashboard/dashboard.html", context, status=400)
 
         amount_to = round(float(amount_from) / float(currencies[currency_from]) * float(currencies[currency_to]), 2)
